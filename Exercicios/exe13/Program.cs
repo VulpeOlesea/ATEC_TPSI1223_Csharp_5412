@@ -17,10 +17,11 @@ namespace exe13
             StreamReader ler = new StreamReader(@"C:\ficheiros\auchan.txt", Encoding.GetEncoding("iso-8859-1"));
 
             string linha;
+            char[] limitadores = { '*', '#', '|', '&' };
             while ((linha = ler.ReadLine()) != null)
             {
                 Auchan a = new Auchan();
-                int ind = linha.IndexOf("*");
+                /*int ind = linha.IndexOf("*");
                 string prod = linha.Substring(0, ind);
 
                 int ind2 = linha.IndexOf("#");
@@ -32,9 +33,12 @@ namespace exe13
                 int ind4 = linha.IndexOf("&");
                 string secao = linha.Substring(ind3 + 1, ind4 - ind3 - 1);
 
-                string mercado = linha.Substring(ind4 + 1);
+                string mercado = linha.Substring(ind4 + 1);*/
 
-                a.add_auchan(prod, preco, quant, secao, mercado);
+                string[] expressoes = linha.Split(limitadores);
+                a.add_auchan(expressoes[0], int.Parse(expressoes[1]), int.Parse(expressoes[2]), expressoes[3], expressoes[4]);
+
+                //a.add_auchan(prod, preco, quant, secao, mercado);
                 lst_auchan.Add(a);
             }
             ler.Close();
