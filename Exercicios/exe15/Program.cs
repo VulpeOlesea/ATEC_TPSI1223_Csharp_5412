@@ -34,7 +34,7 @@ namespace exe15
 
                 if (expressoes.Length == 4)
                 {
-                    ch.add_chip(expressoes[0], int.Parse(expressoes[1]), int.Parse(expressoes[2]), expressoes[3]);
+                    ch.add_chip(expressoes[0], double.Parse(expressoes[1]), int.Parse(expressoes[2]), expressoes[3]);
                     lst_chip.Add(ch);
                 }
             }
@@ -50,11 +50,11 @@ namespace exe15
                 Console.WriteLine("5 – Mostrar no ecran o total da soma de todos os preços finais");
                 Console.WriteLine("6 – Mostrar no ecran a média geral das quantidades de produtos");
                 Console.WriteLine("7 – Gerar um ficheiro “Faro.txt” que deverá conter todos os produtos do armazém de “Faro”");
-                Console.WriteLine("8 – Gerar um ficheiro “Monitores.txt” que deverá conter todos “Monitor …”");
-                Console.WriteLine("9 – Gerar um ficheiro “Portateis_ASUS.txt” que deverá conter todos os “Portatil ASUS…”");
+                Console.WriteLine("8 – Gerar um ficheiro “Monitores.txt” que deverá conter todos “Monitor”");
+                Console.WriteLine("9 – Gerar um ficheiro “Portateis_ASUS.txt” que deverá conter todos os “Portatil ASUS”");
                 Console.WriteLine("10 – Gerar um ficheiro “Preco_ordenado.txt que deverá conter os produtos ordenados por preço do mais caro para o mais barato");
                 Console.WriteLine("11 – Permitir ao utilizador inserir uma linha no ficheiro “chip7”, pedindo ao utilizador o “nome do produto”, “preço”, “stock” e “loja”");
-                Console.WriteLine("12 – Criar um ficheiro designado “encomendar_a_fornecedor.txt” com a seguinte estrutura: Produto&Preço&&Stock&&&Loja&&&&Encomendar\r\nO campo encomendar deve ser preenchido com “SIM”, se o stock atual for igual ou inferior a 3, e “NÃO” caso contrário.");
+                Console.WriteLine("12 – Criar um ficheiro designado “encomendar_a_fornecedor.txt” com a seguinte estrutura: Produto&Preço&&Stock&&&Loja&&&&Encomendar.");
                 Console.WriteLine("13 – Sair");
 
                 Console.WriteLine("Qual a opção que pretende?");
@@ -95,7 +95,7 @@ namespace exe15
                         break;
 
                     case 5: //5 - Mostrar no ecran o total da soma de todos os preços finais
-                        int soma = lst_chip.Sum(x => x.Preco);
+                        double soma = lst_chip.Sum(x => x.Preco);
                         Console.WriteLine($"A soma total de todos os preços finais é {soma}.");
                         Console.ReadKey();
                         break;
@@ -158,26 +158,46 @@ namespace exe15
                         Console.ReadKey();
                         break;
 
+                    case 11:
+                        Console.WriteLine("Para inserir o produto na lista escreva: ");
+                        Console.WriteLine("O nome do produto: ");
+                        string getNome = Console.ReadLine();
+                        Console.WriteLine("Preço: ");
+                        double getPreco = double.Parse(Console.ReadLine());
+                        Console.WriteLine("Produto em stock: ");
+                        int getStock = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Loja: ");
+                        string getLoja = Console.ReadLine();
+
+                        FileInfo fich5 = new FileInfo(@"C:\ficheiros\chip7.txt");
+                        StreamWriter escrever5 = fich5.AppendText();
+                        
+                        escrever5.WriteLine($"{getNome}&{getPreco}&&{getStock}&&&{getLoja}");
+                        
+                        escrever5.Close();
+                        Console.WriteLine("Produto inserido com sucesso.");
+                        Console.ReadKey();
+                        break;
 
 
                     case 12: //12 – Criar um ficheiro designado “encomendar_a_fornecedor.txt” com a seguinte estrutura: Produto&Preço&&Stock&&&Loja&&&&Encomendar O campo encomendar deve ser preenchido com “SIM”, se o stock atual for igual ou inferior a 3, e “NÃO” caso contrário.
-                        FileInfo fich5 = new FileInfo(@"C:\ficheiros\encomendar_a_fornecedor.txt");
-                        StreamWriter escrever5 = fich5.CreateText();
+                        FileInfo fich6 = new FileInfo(@"C:\ficheiros\encomendar_a_fornecedor.txt");
+                        StreamWriter escrever6 = fich6.CreateText();
 
                         foreach (Chip7 ch in lst_chip)
                         {
                             if (ch.Stock <= 3)
                             {
                                 string Encomendar = "SIM";
-                                escrever5.WriteLine($"{ch.Produto} - {ch.Preco} - {ch.Stock} - {ch.Loja} - " + Encomendar);
+                                escrever6.WriteLine($"{ch.Produto}&{ch.Preco}&&{ch.Stock}&&&{ch.Loja}&&&&{Encomendar}");
                             }
                             else
                             {
                                 string Encomendar = "NÃO";
-                                escrever5.WriteLine($"{ch.Produto} - {ch.Preco} - {ch.Stock} - {ch.Loja} - " + Encomendar);
+                                escrever6.WriteLine($"{ch.Produto}&{ch.Preco}&&{ch.Stock}&&&{ch.Loja}&&&&{Encomendar}");
                             }
                         }
-                        escrever5.Close();
+                        escrever6.Close();
                         Console.WriteLine("Ficheiro gerado com sucesso.");
                         Console.ReadKey();
                         break;
@@ -198,7 +218,7 @@ namespace exe15
     }
     class Chip7
     {
-        public void add_chip(string f_prod, int f_preco, int f_stock, string f_loja)
+        public void add_chip(string f_prod, double f_preco, int f_stock, string f_loja)
         {
             Produto = f_prod;
             Preco = f_preco;
@@ -206,7 +226,7 @@ namespace exe15
             Loja = f_loja;
         }
         public string Produto { get; set; }
-        public int Preco { get; set; }
+        public double Preco { get; set; }
         public int Stock { get; set; }
         public string Loja { get; set; }
     }
