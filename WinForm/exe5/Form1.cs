@@ -38,5 +38,15 @@ namespace exe5
                 Application.Exit();
             }
         }
+
+        private void fecharToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int resposta = Convert.ToInt32(MessageBox.Show("Pretende sair?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question));
+
+            if (resposta == 6) // кнопки ответов имеют свои цифры: 6 - это да, 7 - нет.
+            {
+                Application.Exit();
+            }
+        }
     }
 }
