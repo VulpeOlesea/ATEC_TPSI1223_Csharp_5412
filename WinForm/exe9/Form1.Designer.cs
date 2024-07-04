@@ -85,7 +85,7 @@
             // 
             this.btn_todos.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.btn_todos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_todos.Location = new System.Drawing.Point(469, 183);
+            this.btn_todos.Location = new System.Drawing.Point(469, 116);
             this.btn_todos.Name = "btn_todos";
             this.btn_todos.Size = new System.Drawing.Size(144, 42);
             this.btn_todos.TabIndex = 9;
@@ -96,7 +96,7 @@
             // btn_select
             // 
             this.btn_select.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_select.Location = new System.Drawing.Point(469, 116);
+            this.btn_select.Location = new System.Drawing.Point(20, 54);
             this.btn_select.Name = "btn_select";
             this.btn_select.Size = new System.Drawing.Size(144, 42);
             this.btn_select.TabIndex = 8;
@@ -106,9 +106,9 @@
             // 
             // tb_caminho
             // 
-            this.tb_caminho.Location = new System.Drawing.Point(20, 65);
+            this.tb_caminho.Location = new System.Drawing.Point(187, 65);
             this.tb_caminho.Name = "tb_caminho";
-            this.tb_caminho.Size = new System.Drawing.Size(593, 22);
+            this.tb_caminho.Size = new System.Drawing.Size(426, 22);
             this.tb_caminho.TabIndex = 7;
             // 
             // btn_filtrar_regime
@@ -150,7 +150,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(682, 746);
+            this.ClientSize = new System.Drawing.Size(642, 746);
             this.Controls.Add(this.btn_filtrar_regime);
             this.Controls.Add(this.cbb_regime);
             this.Controls.Add(this.label2);
